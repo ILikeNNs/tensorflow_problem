@@ -101,8 +101,6 @@ def tf_data_generator3(filelist, directory = [], batch_size = 5):
         listed_no_mask = listed_no_mask.reshape(shape1,99,2)
         listed_no_mask_Y = listed_no_mask_Y.reshape(shape1,99,2)
         listed_no_mask_w = listed_no_mask_w.reshape(shape1,99)
-        listed_no_mask = listed_no_mask
-        listed_no_mask_Y = listed_no_mask_Y
         yield listed_no_mask, listed_no_mask_Y
         i = i + 1
         
