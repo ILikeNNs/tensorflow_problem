@@ -42,21 +42,12 @@ physical_devices = tf.config.experimental.list_physical_devices('GPU')
 tf.config.experimental.set_memory_growth(physical_devices[0], True)
 
 
-path_x_tr = './data/x_train_m/'
-path_y_tr = './data/y_train_m/'
-path_x_te = './data/x_test_m/'
-path_y_te = './data/y_test_m/'
+path_x_tr = './x_train_m/'
+path_y_tr = './y_train_m/'
 
 x_tr_f = os.listdir(path_x_tr)
 y_tr_f = os.listdir(path_y_tr)
-x_te_f = os.listdir(path_x_te)
-y_te_f = os.listdir(path_y_te)
 
-no_of_files = len(y_te_f)
-file_batch = 5
-valid_frac = 0.4
-loop_iterations = np.floor(no_of_files / file_batch)
-valid_iterations = np.floor(no_of_files * valid_frac / file_batch)
 init_alpha = 47.05906039370126
 mask_value = -1.3371337
 
@@ -133,7 +124,7 @@ def wtte_rnn():
     model.compile(loss=loss, optimizer=Adam(lr=.01,clipvalue=0.5),sample_weight_mode='temporal')
     return model        
         
-generated_train_data = tf_data_generator3(x_tr_f, ['./data/x_train_m/', './data/y_train_m/'], batch_size = 2)
+generated_train_data = tf_data_generator3(x_tr_f, ['./x_train_m/', './y_train_m/'], batch_size = 2)
 
 model = wtte_rnn()
 model.summary()
