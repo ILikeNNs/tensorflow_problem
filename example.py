@@ -89,21 +89,17 @@ def tf_data_generator3(filelist, directory = [], batch_size = 5):
         X_a,Y_a,W_a = nanmask_to_keras_mask(X_a,Y_a,mask_value,tte_mean_train)
         listed_no_mask = []
         listed_no_mask_Y = []
-        listed_no_mask_w = []
         for j in range(X_a.shape[0]):
             if (X_a[j]==mask_value).all() == True:
                 pass
             else:
                 listed_no_mask.append(X_a[j])
                 listed_no_mask_Y.append(Y_a[j])
-                listed_no_mask_w.append(W_a[j])
         listed_no_mask = np.concatenate(listed_no_mask)
         listed_no_mask_Y = np.concatenate(listed_no_mask_Y)     
-        listed_no_mask_w = np.concatenate(listed_no_mask_w) 
         shape1 = np.int(listed_no_mask.shape[0]/99)
         listed_no_mask = listed_no_mask.reshape(shape1,99,2)
         listed_no_mask_Y = listed_no_mask_Y.reshape(shape1,99,2)
-        listed_no_mask_w = listed_no_mask_w.reshape(shape1,99)
         yield listed_no_mask, listed_no_mask_Y
         i = i + 1
         
