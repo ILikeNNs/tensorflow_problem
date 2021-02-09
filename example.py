@@ -69,8 +69,11 @@ def tf_data_generator3(filelist, directory = [], batch_size = 5):
     i = 0
     x_t = os.listdir(directory[0])
     y_t = os.listdir(directory[1])
+    x_t, y_t = shuffle(x_t, y_t)
     while True:
-        print(i)
+        if i*batch_size >= len(x_t):
+            i = 0
+            x_t, y_t = shuffle(x_t, y_t)
         file_chunk = filelist[i*batch_size:(i+1)*batch_size] 
         X_a = []
         Y_a = []
