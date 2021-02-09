@@ -132,7 +132,7 @@ model.fit(generated_train_data,
           verbose=1)
           
           
-# after restarting the kernel and instead of L136-L144 having the following
+# after restarting the kernel and instead of L126-L132 having the following
 # model = wtte_rnn()
 # model.summary()
 
